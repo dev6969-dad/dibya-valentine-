@@ -2,32 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For Dibya</title>
     <style>
         body {
             margin: 0; padding: 0;
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             height: 100vh; font-family: 'Arial', sans-serif;
-            /* This uses your local cat image */
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('cat.jpg.Jpg');
-            background-size: cover; background-position: center;
+            /* Using your exact filename from GitHub */
+            background: url('cat.jpg.JPG') no-repeat center center fixed;
+            background-size: cover;
             overflow: hidden;
+        }
+        .overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* Dims the cat slightly so text pops */
+            z-index: 1;
         }
         .card {
             background: rgba(255, 255, 255, 0.9);
-            padding: 30px; border-radius: 20px;
-            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 25px; border-radius: 20px;
+            text-align: center; width: 85%; max-width: 320px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 2; position: relative;
         }
-        h1 { color: #e91e63; }
-        .btns { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
-        button { padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; }
-        #yes { background: #ff4081; color: white; transition: 0.3s; }
-        #no { background: #555; color: white; position: absolute; }
+        h1 { color: #d81b60; font-size: 1.5rem; margin-bottom: 20px; }
+        .btns { display: flex; justify-content: center; gap: 15px; height: 50px; }
+        button { padding: 10px 25px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; }
+        #yes { background: #ff4081; color: white; font-size: 1.1rem; }
+        #no { background: #eeeeee; color: #333; position: absolute; transition: 0.1s; }
     </style>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="card">
         <h1>Will you be my Valentine, Dibya? 🐾</h1>
         <div class="btns">
@@ -38,15 +45,20 @@
 
     <script>
         const no = document.getElementById('no');
-        no.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - no.offsetWidth);
-            const y = Math.random() * (window.innerHeight - no.offsetHeight);
+        no.addEventListener('touchstart', moveBtn); // Better for iPhone
+        no.addEventListener('mouseover', moveBtn);
+
+        function moveBtn() {
+            const x = Math.random() * (window.innerWidth - no.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - no.offsetHeight - 20);
             no.style.left = x + 'px';
             no.style.top = y + 'px';
-        });
+        }
+
         function win() {
-            document.body.innerHTML = "<div class='card'><h1>Yay! See you soon, Dibya! ❤️</h1></div>";
+            document.querySelector('.card').innerHTML = "<h1>Yay! ❤️<br>Best choice ever, Dibya!</h1>";
         }
     </script>
 </body>
 </html>
+
