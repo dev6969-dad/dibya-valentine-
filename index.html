@@ -15,14 +15,14 @@
         }
         .card {
             background: #ffffff;
-            padding: 15px;
+            padding: 20px;
             border: 3px solid #ff4081;
             border-radius: 15px;
             text-align: center;
             width: 75%;
             max-width: 240px;
             position: absolute;
-            top: 62%; /* Right below the mouth */
+            top: 62%; 
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             z-index: 10;
         }
@@ -49,7 +49,6 @@
     <script>
         function move() {
             const no = document.getElementById('no');
-            // This math keeps the button at least 20px away from the edges
             const maxX = window.innerWidth - no.offsetWidth - 20;
             const maxY = window.innerHeight - no.offsetHeight - 20;
             
@@ -64,7 +63,7 @@
 
         function win() {
             document.getElementById('mainCard').innerHTML = `
-                <h1 style="color:#d81b60; margin:0;">good girl ❤️</h1>
+                <h1 style="color:#d81b60; margin:0;">Good girl😉❤️,<br>see you soon</h1>
             `;
         }
     </script>
