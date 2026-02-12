@@ -8,7 +8,7 @@
         body {
             margin: 0; padding: 0;
             display: flex; 
-            align-items: flex-end; /* Keeps it at the bottom */
+            align-items: flex-end; /* Align to bottom */
             justify-content: center;
             height: 100vh; 
             font-family: 'Arial', sans-serif;
@@ -17,40 +17,33 @@
             overflow: hidden;
         }
         .card {
-            background: #ffffff; /* Solid white for maximum visibility */
+            background: #ffffff; 
             padding: 20px; 
-            border: 3px solid #ff4081; /* Pink border to catch the eye */
+            border: 4px solid #ff4081; /* Thicker border for visibility */
             border-radius: 20px;
             text-align: center; 
-            width: 85%; 
-            max-width: 280px;
-            margin-bottom: 40px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            position: relative; 
+            width: 80%; 
+            max-width: 260px;
+            /* This 'bottom' value moves it up to the neck area */
+            position: relative;
+            bottom: 15vh; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             z-index: 10;
         }
-        h1 { color: #d81b60; font-size: 1.3rem; margin-bottom: 20px; line-height: 1.4; }
+        h1 { color: #d81b60; font-size: 1.2rem; margin: 0 0 15px 0; font-weight: 900; }
         .btns { position: relative; height: 50px; width: 100%; }
         button { 
-            padding: 10px 22px; border: none; border-radius: 50px; 
+            padding: 10px 20px; border: none; border-radius: 50px; 
             font-weight: bold; cursor: pointer; font-size: 1rem;
             position: absolute;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        #yes { 
-            background: #ff4081; color: white; 
-            left: 5%; 
-        }
-        #no { 
-            background: #444; color: white; 
-            right: 5%;
-            transition: 0.1s;
-        }
+        #yes { background: #ff4081; color: white; left: 0; }
+        #no { background: #444; color: white; right: 0; transition: 0.1s; }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Will you be my Valentine, Dibya? 🐾</h1>
+        <h1>Be my Valentine, Dibya? 🐾</h1>
         <div class="btns">
             <button id="yes" onclick="win()">Yes</button>
             <button id="no" onmouseover="move()" ontouchstart="move()">No</button>
@@ -65,13 +58,13 @@
             no.style.position = 'fixed'; 
             no.style.left = x + 'px';
             no.style.top = y + 'px';
+            no.style.zIndex = '999';
         }
 
         function win() {
-            document.body.innerHTML = `
-                <div style="background:white; border: 4px solid #ff4081; padding:30px; border-radius:20px; text-align:center; position:fixed; bottom:40px; width:80%;">
-                    <h1 style="color:#d81b60; margin:0;">Yay! ❤️ See you soon, Dibya!</h1>
-                </div>`;
+            document.querySelector('.card').innerHTML = `
+                <h1 style="color:#d81b60; margin:0;">Yay! ❤️<br>See you soon!</h1>
+            `;
         }
     </script>
 </body>
