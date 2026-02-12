@@ -7,40 +7,48 @@
     <style>
         body {
             margin: 0; padding: 0;
-            display: flex; align-items: center; justify-content: center;
-            height: 100vh; font-family: 'Arial', sans-serif;
+            display: flex; 
+            align-items: flex-end; /* Moves the box to the bottom */
+            justify-content: center;
+            height: 100vh; 
+            font-family: 'Arial', sans-serif;
             background: url('cat.jpg.JPG') no-repeat center center fixed;
             background-size: cover;
             overflow: hidden;
         }
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px; border-radius: 20px;
-            text-align: center; width: 80%; max-width: 300px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            position: relative; z-index: 10;
+            background: rgba(255, 255, 255, 0.8); /* More see-through */
+            padding: 15px; 
+            border-radius: 20px;
+            text-align: center; 
+            width: 70%; /* Smaller width */
+            max-width: 250px;
+            margin-bottom: 50px; /* Gap from the bottom */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: relative; 
+            z-index: 10;
         }
-        h1 { color: #d81b60; font-size: 1.4rem; margin-bottom: 30px; }
-        .btns { position: relative; height: 100px; width: 100%; }
+        h1 { color: #d81b60; font-size: 1.1rem; margin-bottom: 15px; }
+        .btns { position: relative; height: 60px; width: 100%; }
         button { 
-            padding: 12px 25px; border: none; border-radius: 50px; 
-            font-weight: bold; cursor: pointer; font-size: 1rem;
-            position: absolute; /* Both buttons absolute to control movement */
+            padding: 8px 20px; border: none; border-radius: 50px; 
+            font-weight: bold; cursor: pointer; font-size: 0.9rem;
+            position: absolute;
         }
         #yes { 
             background: #ff4081; color: white; 
-            left: 50%; transform: translateX(-110%); /* Stay on the left */
+            left: 5%; 
         }
         #no { 
             background: #555; color: white; 
-            left: 50%; transform: translateX(10%); /* Start on the right */
+            right: 5%;
             transition: 0.1s;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Will you be my Valentine, Dibya? 🐾</h1>
+        <h1>Be my Valentine, Dibya? 🐾</h1>
         <div class="btns">
             <button id="yes" onclick="win()">Yes</button>
             <button id="no" onmouseover="move()" ontouchstart="move()">No</button>
@@ -50,23 +58,24 @@
     <script>
         function move() {
             const no = document.getElementById('no');
-            // Calculate random positions but keep them inside the screen
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            // Allow the button to fly anywhere on the screen
+            const x = Math.random() * (window.innerWidth - 80);
+            const y = Math.random() * (window.innerHeight - 40);
             
-            no.style.position = 'fixed'; // Breaks out of the card to run anywhere
+            no.style.position = 'fixed'; 
             no.style.left = x + 'px';
             no.style.top = y + 'px';
         }
 
         function win() {
             document.body.innerHTML = `
-                <div style="background:white; padding:40px; border-radius:20px; text-align:center;">
-                    <h1 style="color:#d81b60;">Yay! ❤️ See you soon, Dibya!</h1>
+                <div style="background:rgba(255,255,255,0.9); padding:20px; border-radius:20px; text-align:center; position:fixed; bottom:50px;">
+                    <h1 style="color:#d81b60; margin:0;">Yay! ❤️ See you soon, Dibya!</h1>
                 </div>`;
         }
     </script>
 </body>
 </html>
+
 
 
