@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Dibya</title>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            height: 100vh; font-family: 'Arial', sans-serif;
+            /* This uses your local cat image */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('cat.jpg');
+            background-size: cover; background-position: center;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px; border-radius: 20px;
+            text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 { color: #e91e63; }
+        .btns { margin-top: 20px; display: flex; justify-content: center; gap: 20px; }
+        button { padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; }
+        #yes { background: #ff4081; color: white; transition: 0.3s; }
+        #no { background: #555; color: white; position: absolute; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Will you be my Valentine, Dibya? 🐾</h1>
+        <div class="btns">
+            <button id="yes" onclick="win()">Yes</button>
+            <button id="no">No</button>
+        </div>
+    </div>
+
+    <script>
+        const no = document.getElementById('no');
+        no.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - no.offsetWidth);
+            const y = Math.random() * (window.innerHeight - no.offsetHeight);
+            no.style.left = x + 'px';
+            no.style.top = y + 'px';
+        });
+        function win() {
+            document.body.innerHTML = "<div class='card'><h1>Yay! See you soon, Dibya! ❤️</h1></div>";
+        }
+    </script>
+</body>
+</html>
