@@ -21,16 +21,10 @@
             text-align: center;
             width: 75%;
             max-width: 240px;
-            /* POSITIONING: This moves the box to the neck area */
             position: absolute;
-            top: 62%; 
+            top: 62%; /* Right below the mouth */
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             z-index: 10;
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
         h1 { color: #d81b60; font-size: 1.1rem; margin: 0 0 15px 0; font-weight: bold; }
         .btns { position: relative; height: 45px; width: 100%; }
@@ -44,7 +38,7 @@
     </style>
 </head>
 <body>
-    <div class="card">
+    <div class="card" id="mainCard">
         <h1>Be my Valentine, Dibya? 🐾</h1>
         <div class="btns">
             <button id="yes" onclick="win()">Yes</button>
@@ -55,8 +49,13 @@
     <script>
         function move() {
             const no = document.getElementById('no');
-            const x = Math.random() * (window.innerWidth - 80);
-            const y = Math.random() * (window.innerHeight - 40);
+            // This math keeps the button at least 20px away from the edges
+            const maxX = window.innerWidth - no.offsetWidth - 20;
+            const maxY = window.innerHeight - no.offsetHeight - 20;
+            
+            const x = Math.max(20, Math.random() * maxX);
+            const y = Math.max(20, Math.random() * maxY);
+            
             no.style.position = 'fixed'; 
             no.style.left = x + 'px';
             no.style.top = y + 'px';
@@ -64,8 +63,8 @@
         }
 
         function win() {
-            document.querySelector('.card').innerHTML = `
-                <h1 style="color:#d81b60; margin:0;">Yay! ❤️</h1>
+            document.getElementById('mainCard').innerHTML = `
+                <h1 style="color:#d81b60; margin:0;">good girl ❤️</h1>
             `;
         }
     </script>
